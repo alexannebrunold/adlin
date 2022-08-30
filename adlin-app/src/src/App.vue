@@ -1,11 +1,24 @@
 <template>
   <div id="app">
+    <Header>
     <nav>
       <router-link to="/">Salles</router-link>
     </nav>
+    </Header>
     <router-view/>
   </div>
 </template>
+
+<script>
+import Header from './components/Header'
+
+export default {
+  components: {
+    Header
+  }
+}
+</script>
+
 
 <style lang="scss">
 #app {
@@ -17,8 +30,6 @@
 }
 
 nav {
-  padding: 30px;
-
   a {
     font-weight: bold;
     color: #2c3e50;
