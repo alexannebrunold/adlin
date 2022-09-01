@@ -24,7 +24,9 @@
       v-model="dateEnd"
     /> -->
 
-    <h1 v-if="error">{{ error.message }}</h1>
+    <div v-if="errorMessage" class="error">
+      <p>{{ errorMessage }}</p>
+    </div>
 
     <li class="rooms-flex" v-if="startDate">
       <RoomCard
@@ -51,7 +53,7 @@ export default {
       rooms: [],
       startDate: "",
       dateEnd: "",
-      error: [],
+      errorMessage: '',
     };
   },
   watch: {
@@ -74,7 +76,7 @@ export default {
           this.rooms = rooms.data;
         })
         .catch((error) => {
-          this.error = error;
+          this.error = error.message;
         });
     },
     createReservationWithRoomInformations(roomInfos) {
@@ -106,5 +108,11 @@ export default {
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+.error {
+  border: 1px solid red;
+  padding: 32px;
+  width: 180px;
 }
 </style>
