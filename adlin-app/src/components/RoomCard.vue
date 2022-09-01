@@ -4,11 +4,11 @@
     <p>{{ room.description }}</p>
     <p>{{ room.capacity }}</p>
     <div v-if="room.equipements.length > 1">
-      <li v-for="equipements in room.equipements" :key="equipements">
+      <li v-for="equipements in room.equipements" :key="equipements.name">
         {{ equipements.name }}
       </li>
     </div>
-    <BaseButton>cc</BaseButton>
+    <BaseButton @click="$emit('getCardInformations', room)">RESERVER</BaseButton>
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
     BaseButton,
   },
   props: {
-    room: Array,
+    room: Object,
   },
 };
 </script>

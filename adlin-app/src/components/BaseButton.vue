@@ -40,7 +40,7 @@ export default {
 
 .button-style,
 .base-button-padding {
-  color: var(--white);
+  color: white;
   border: 2px solid transparent;
   display: flex;
   justify-content: center;
