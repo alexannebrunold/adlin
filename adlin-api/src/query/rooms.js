@@ -15,5 +15,4 @@ function getAllRooms(req, res) {
 
 export default {
   getAllRooms,
-  getRoomById,
 }

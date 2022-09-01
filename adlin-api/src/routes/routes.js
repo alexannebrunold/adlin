@@ -9,11 +9,10 @@ router.get('/', (req, res) => {
 })
 
 //Rooms
-router.get('/allRooms', roomsLoader.getAllRoomsHey)
+router.get('/allRooms', roomsLoader.getAllRooms)
 
 //Reservations
 router.get('/x', reservationsLoader.getAllReservations)
 router.post('/createReservation', reservationsLoader.createReservation)
-
 
 export default router

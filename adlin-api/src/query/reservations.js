@@ -14,12 +14,12 @@ function getAllReservations(req, res) {
   
 })}
 
-const roomReservation = {
-  id: 1234,
-  room_id: reservation.roomId,
-  date: reservation.date,
-  hour: reservation.hour
-}
+// const roomReservation = {
+//   id: 1234,
+//   room_id: reservation.roomId,
+//   date: reservation.date,
+//   hour: reservation.hour
+// }
 
 function createReservation(req, res, reservation) {
   const stringifyJson = JSON.stringify(reservation)
