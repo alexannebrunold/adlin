@@ -1,7 +1,7 @@
 import fs from 'fs'
 
 
-function getAllReservations(req, res, next) {
+function getAllReservations(req, res) {
   fs.readFile("./reservations.json", "utf8", (error, allReservations) => {
   if (error || !allReservations.includes('name')) {
     return res.json({ 
@@ -14,14 +14,15 @@ function getAllReservations(req, res, next) {
   
 })}
 
-const customer = {
-  name: "Newbie Co.",
-  order_count: 0,
-  address: "Po Box City",
+const roomReservation = {
+  id: 1234,
+  room_id: reservation.roomId,
+  date: reservation.date,
+  hour: reservation.hour
 }
 
-function createReservation(req, res, next) {
-  const stringifyJson = JSON.stringify(customer)
+function createReservation(req, res, reservation) {
+  const stringifyJson = JSON.stringify(reservation)
   
   fs.writeFile("./reservations.json", stringifyJson, (error) => {
     if (error) {

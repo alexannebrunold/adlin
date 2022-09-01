@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
 
 //Rooms
 router.get('/allRooms', roomsLoader.getAllRoomsHey)
-// router.get('/room/:id', recipesLoader.getRoomById)
 
 //Reservations
 router.get('/x', reservationsLoader.getAllReservations)
