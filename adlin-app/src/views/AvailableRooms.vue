@@ -27,21 +27,26 @@
     <div v-if="errorMessage" class="error">
       <p>{{ errorMessage }}</p>
     </div>
+    <p v-if="created">La réservation est créer :)</p>
 
     <li class="rooms-flex" v-if="startDate">
-      <RoomCard
-        :room="rooms"
-        v-for="rooms in rooms"
-        :key="rooms.name"
-        @getCardInformations="createReservationWithRoomInformations"
-      ></RoomCard>
+      <div v-if="!created">
+        <RoomCard
+          :room="rooms"
+          v-for="rooms in rooms"
+          :key="rooms.name"
+          @getCardInformations="createReservationWithRoomInformations"
+          :buttonIsLoading="buttonIsLoading"
+        ></RoomCard>
+      </div>
     </li>
-    <p v-if="rooms && startDate">Pas de room</p>
+
+    <p v-if="rooms.length <= 0 && startDate">Pas de room</p>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import httpService from "../plugins/httpService";
 import RoomCard from "../components/RoomCard.vue";
 
 export default {
@@ -53,48 +58,63 @@ export default {
       rooms: [],
       startDate: "",
       dateEnd: "",
-      errorMessage: '',
+      errorMessage: "",
+      buttonIsLoading: false,
+      isReservationCreated: false,
     };
   },
   watch: {
     startDate() {
-     this.getAvailableRoomsForSelectedDate(this.startDate)
-    }
+      console.log('x');
+      this.getAvailableRoomsForSelectedDate(this.startDate);
+    },
+  },
+  computed: {
+    created() {
+      return this.isReservationCreated;
+    },
   },
   methods: {
     getAvailableRoomsForSelectedDate(selectedStartDate) {
-      axios
-        .post(
-          "http://localhost:8000/api/roomByDate",
-          { date: selectedStartDate },
-          {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          }
-        )
+      return httpService
+        .post({
+          path: "/roomByDate",
+          body: {
+            date: selectedStartDate,
+          },
+        })
         .then((rooms) => {
-          this.rooms = rooms.data;
+          console.log(rooms);
+          this.rooms = rooms;
         })
         .catch((error) => {
           this.error = error.message;
         });
     },
     createReservationWithRoomInformations(roomInfos) {
-      axios
-        .post(
-          "http://localhost:8000/api/createReservation",
-          { roomName: roomInfos.name, date: this.date },
-          {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          }
-        )
+      this.buttonIsLoading = true;
+      httpService
+        .post({
+          path: "/createReservation",
+          body: {
+            roomName: roomInfos.name,
+            date: this.date,
+          },
+        })
         .then((result) => {
+          this.buttonIsLoading = false;
+          this.iseCreated(result);
           return result;
         })
         .catch((error) => {
+          this.buttonIsLoading = false;
           return (this.error = error);
         });
+    },
+    iseCreated(result) {
+      return result.message === "created"
+        ? (this.isReservationCreated = true)
+        : (this.isReservationCreated = false)
     },
   },
 };
@@ -108,6 +128,7 @@ export default {
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
+  margin-top: 32px;
 }
 
 .error {

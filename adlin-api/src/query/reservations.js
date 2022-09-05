@@ -1,7 +1,6 @@
 import fs from "fs";
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 const uuid = uuidv4();
-
 
 function getAllReservations(req, res) {
   fs.readFile("./reservations.json", "utf8", (error, allReservations) => {
@@ -16,33 +15,38 @@ function getAllReservations(req, res) {
   });
 }
 
-// const roomReservation = {
-//   id: 1234,
-//   room_id: 1,
-//   date: 12,
-//   hour: 2
-// }
-
 function createReservation(req, res) {
-  // const roomReservation = {
-  //   id: uuid,
-  //   name: roomReservation.name,
-  //   //  room_id: reservation.roomId,
-  //   date: room.date,
-  //   hour: room.hour,
-  // }
-  const stringifyJson = JSON.stringify(roomReservation);
+  const roomReservation = {
+    id: uuid,
+    name: req.body.name,
+    //  room_id: reservation.roomId,
+    date: req.body.date,
+    // hour: room.hour,
+  };
 
-  fs.writeFile("./reservations.json", stringifyJson, (error) => {
+  fs.readFile("./reservations.json", "utf8", (error, allReservations) => {
     if (error) {
-      return res.status(500).json({
-        message: "error wrinting file" + error,
-      });
-    } else {
-      return res.status(200).json({
-        message: "created",
+      return res.json({
+        message: error,
       });
     }
+
+    let parsedJSON = JSON.parse(allReservations)
+    parsedJSON.reservations.push(roomReservation)
+
+    const stringifyJson = JSON.stringify(parsedJSON, null, 2);
+
+    fs.writeFile("./reservations.json", stringifyJson, (error) => {
+      if (error) {
+        return res.status(500).json({
+          message: "error wrinting file" + error,
+        });
+      } else {
+        return res.status(200).json({
+          message: "created",
+        });
+      }
+    });
   });
 }
 
