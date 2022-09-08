@@ -1,13 +1,13 @@
-import axios from "axios";
+import axios from "axios"
 
 class HttpService {
   constructor(headers) {
-    this.apiUrl = "http://localhost:8000/api";
+    this.apiUrl = "http://localhost:8000/api"
     this.headers = {
       headers,
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
-    };
+    }
   }
 
   get({ path }) {
@@ -17,11 +17,11 @@ class HttpService {
         headers: this.headers,
       })
       .then((result) => {
-        return result.data;
+        return result.data
       })
       .catch((error) => {
-        throw error;
-      });
+        throw error
+      })
   }
 
   post({ path, body }) {
@@ -30,15 +30,14 @@ class HttpService {
         headers: this.headers,
       })
       .then((result) => {
-        console.log(result);
-        return result.data;
+        return result.data
       })
       .catch((error) => {
-        throw error;
-      });
+        throw error
+      })
   }
 }
 
-const httpService = new HttpService();
+const httpService = new HttpService()
 
-export default httpService;
+export default httpService

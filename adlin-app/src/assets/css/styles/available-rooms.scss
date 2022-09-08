@@ -1,0 +1,34 @@
+.available-rooms-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 32px;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+  
+.rooms-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.margin-top-16 {
+  margin-top: 16px;
+}
+  
+.error {
+  border: 1px solid var(--error);
+  padding: 32px;
+  width: 180px;
+}
+
+.title {
+  font-size: 24px;
+}
+
+.meeting-time {
+  padding-top: 16px;
+}

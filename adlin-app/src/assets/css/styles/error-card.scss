@@ -1,0 +1,19 @@
+.error-card-container {
+  width: 361px;
+  height: 230px;
+  border: 2px solid var(--error);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+}
+  
+.title {
+  display: flex;
+  font-size: 32px;
+  align-self: center;
+  padding-bottom: 8px;
+}

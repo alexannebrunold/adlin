@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import BaseButton from "./BaseButton.vue";
+import BaseButton from './BaseButton.vue'
 
 export default {
-  name: "RoomCard",
+  name: 'RoomCard',
   components: {
     BaseButton,
   },
@@ -33,39 +33,8 @@ export default {
   },
   watch: {
     buttonIsLoading() {
-      console.log(this.buttonIsLoading);
+      this.buttonIsLoading
     },
   },
-};
+}
 </script>
-
-<style scoped lang="css">
-.card-container {
-  width: 361px;
-  height: 230px;
-  border: 2px solid rgb(31, 31, 156);
-  border-radius: 8px;
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  position: relative;
-}
-
-.title {
-  display: flex;
-  font-size: 32px;
-  align-self: center;
-  padding-bottom: 8px;
-}
-
-.button-position {
-  display: flex;
-  align-self: flex-end;
-  justify-self: flex-end;
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-}
-</style>

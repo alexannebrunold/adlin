@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "BaseButton",
+  name: 'BaseButton',
   props: {
     loading: {
       type: Boolean,
@@ -19,11 +19,11 @@ export default {
     },
     formId: {
       type: String,
-      default: "",
+      default: '',
     },
     typeOfButton: {
       type: String,
-      default: "primaryButton",
+      default: 'primaryButton',
     },
     watch: {
 loading() {
@@ -32,5 +32,5 @@ loading() {
     }
     
   },
-};
+}
 </script>

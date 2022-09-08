@@ -1,0 +1,17 @@
+.success-card-container {
+  width: 361px;
+  height: 230px;
+  border: 2px solid var(--success);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  
+.title {
+  display: flex;
+  font-size: 32px;
+  align-self: center;
+  padding-bottom: 8px;
+}
