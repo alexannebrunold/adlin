@@ -7,6 +7,6 @@ api
 cd adlin-api  
 npm run dev  
 
-app. 
+app  
 cd adlin-app    
 rpm run serve   
