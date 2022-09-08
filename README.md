@@ -1,12 +1,12 @@
-# adlin
+# Adlin
 
-git clone
+git clone  
 npm install
 
-api 
-cd adlin-api 
-npm run dev
+api  
+cd adlin-api  
+npm run dev  
 
-app
-cd adlin-app
-rpm run serve
+app. 
+cd adlin-app    
+rpm run serve   
